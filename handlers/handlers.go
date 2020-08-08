@@ -14,8 +14,10 @@ import (
 /* set port*/
 func Handlers() {
 	router := mux.NewRouter()
-
+	/* sintaxis middleware: carpeta/Method one inside other one*/
 	router.HandleFunc("/registro", middleware.CheckBD(routers.AddUser)).Methods("POST")
+	router.HandleFunc("/login", middleware.CheckBD(routers.Login)).Methods("POST")
+	router.HandleFunc("/view-profile", middleware.CheckBD(middleware.ValidateJWT(routers.GetProfile))).Methods("GET")
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
