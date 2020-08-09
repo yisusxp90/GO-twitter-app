@@ -10,7 +10,7 @@ import (
 )
 
 var Email string
-var userID string
+var UserID string
 
 /* function to extract data from token */
 func ProcessToken(token string) (*models.Claim, bool, string, error) {
@@ -31,9 +31,9 @@ func ProcessToken(token string) (*models.Claim, bool, string, error) {
 		_, find, _ := bd.VerifyUserExist(claims.Email)
 		if find == true {
 			Email = claims.Email
-			userID = claims.ID.Hex()
+			UserID = claims.ID.Hex()
 		}
-		return claims, find, userID, nil
+		return claims, find, UserID, nil
 	}
 	if !tkn.Valid {
 		return claims, false, string(""), errors.New("invalid token")
