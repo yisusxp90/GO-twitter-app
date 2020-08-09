@@ -27,6 +27,9 @@ func UpdateProfile(user models.Usuario, ID string) (bool, error) {
 	if len(user.Avatar) > 0 {
 		profile["avatar"] = user.Avatar
 	}
+	if len(user.Banner) > 0 {
+		profile["banner"] = user.Banner
+	}
 	if len(user.Biografia) > 0 {
 		profile["biografia"] = user.Biografia
 	}
